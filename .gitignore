@@ -1,1 +1,4 @@
 /ReactJS Essential Student
+/node_modules
+/dist
+npm-debug.log
