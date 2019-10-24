@@ -3,7 +3,8 @@
   "version": "2.0.0",
   "description": "This is a homework that I make up for myself.",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+  },
   "devDependencies": {
     "@babel/core": "^7.0.0",
     "@babel/plugin-proposal-object-rest-spread": "^7.3.2",
@@ -27,8 +28,9 @@
     "twig-loader": "^0.5.1",
     "vinyl-named": "^1.1.0",
     "webpack-stream": "^5.2.1",
-    "react": "*",
-    "react-dom": "*"
+    "react": "~16.11.0",
+    "react-dom": "~16.11.0",
+    "@babel/preset-react": "~7.6.3"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
