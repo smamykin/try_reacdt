@@ -8,14 +8,16 @@ class Calc extends React.Component
 {
     constructor(props){
         super(props);
-        this.state = {'result': '0'}
+        this.state = {'result': '0'};
+        this.number1 = React.createRef();
+        this.number2 = React.createRef();
     }
     get n1(){
-        return this.normalize(this.number1.value);
+        return this.normalize(this.number1.current.value);
     }
 
     get n2(){
-        return this.normalize(this.number2.value);
+        return this.normalize(this.number2.current.value);
     }
 
     normalize(n){
@@ -38,11 +40,6 @@ class Calc extends React.Component
         this.setState({'result': this.n1 - this.n2});
     }
 
-    componentDidMount() {
-        this.number1 = document.querySelector('.number1');
-        this.number2 = document.querySelector('.number2');
-   }
-
    shouldComponentUpdate(nextProps, nextState, nextContext) {
         return nextState.result !== this.state.result;
    }
@@ -50,8 +47,8 @@ class Calc extends React.Component
     render() {
         return (
             <div>
-                <input type='number' className={'number1'} name="number1" placeholder={'Number 1'}/>
-                <input type='number' className={'number2'} name="number2" placeholder={'Number 2'}/>
+                <input type='number' className={'number1'} name='number1' placeholder={'Number 1'} ref={this.number1}/>
+                <input type='number' className={'number2'} name='number2' placeholder={'Number 2'} ref={this.number2}/>
                 <button onClick={()=> this.addition()}>+</button>
                 <button onClick={()=> this.subtraction()}>-</button>
                 <button onClick={()=> this.multiplication()}>*</button>
