@@ -8,6 +8,6 @@ import Timer from "./parts/Timer";
 
 
 ReactDOM.render(
-    <Timer/>,
+    <NotesApp/>,
     document.getElementById('mount-point')
 );

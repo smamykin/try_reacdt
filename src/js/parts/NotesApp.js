@@ -9,6 +9,9 @@ class Note extends React.Component {
             <div className='note' style={style}>
                 <span className='delete-note' onClick={this.props.onDelete}> × </span>
                 {this.props.children}
+                {
+
+                }
             </div>
         );
     }
@@ -55,7 +58,7 @@ class ColorOption extends React.Component {
 class NoteEditor extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {text: '', color:'yellow'};
+        this.state = {text: '', color:'yellow', tags: []};
         this.handleTextChange = this.handleTextChange.bind(this);
         this.handleNoteAdd = this.handleNoteAdd.bind(this);
         this.handleColorSelect = this.handleColorSelect.bind(this);
@@ -69,7 +72,8 @@ class NoteEditor extends React.Component {
         let newNote = {
             text: this.state.text,
             color: this.state.color,
-            id: Date.now()
+            id: Date.now(),
+            tags:this.state.tags
         };
         this.props.onNoteAdd(newNote);
 
@@ -78,6 +82,9 @@ class NoteEditor extends React.Component {
 
     handleColorSelect(color){
         this.setState({color})
+    }
+    handleAddTag(tag){
+        this.setState({tags: [...this.state.tags, tag]})
     }
 
     render() {
@@ -91,8 +98,35 @@ class NoteEditor extends React.Component {
                     onChange={this.handleTextChange}
                 />
                 <ColorSelector handleColorSelect={this.handleColorSelect} selected={this.state.color}/>
+                <TagSelector handleAddTag={(tag)=>this.handleAddTag(tag)}/>
                 <button className={'add-button'} onClick={this.handleNoteAdd}>Add</button>
             </div>
+        );
+    }
+}
+
+class TagSelector extends React.Component
+{
+    constructor(props){
+        super(props);
+
+        this.input = React.createRef();
+    }
+    onsubmit(evt){
+        evt.preventDefault();
+        let tag = this.input.current.value;
+        this.props.handleAddTag(tag);
+        this.input.current.value = '';
+
+        return false;
+    }
+
+    render(){
+        return (
+            <form onSubmit={(evt)=>{return this.onsubmit(evt)}}>
+                <input type="text" ref={this.input}/>
+                <input type="submit" value="Добавить" />
+            </form>
         );
     }
 }
@@ -130,7 +164,9 @@ class NotesGrid extends React.Component {
                             <Note
                                 key={note.id}
                                 onDelete={onNoteDelete.bind(null, note)}
-                                color={note.color}>
+                                color={note.color}
+                                tags={note.tags}
+                            >
                                 {note.text}
                             </Note>
                         )
