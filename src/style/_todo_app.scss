@@ -1,0 +1,79 @@
+.todo {
+  max-width: 667px;
+  margin: 35px auto;
+  &__header {
+    border: 1px solid gray;
+    border-bottom: 0;
+    padding:7px 40px;
+  }
+  &__title {
+    color:gray;
+    font-size: 32px;
+  }
+  &__task-list{
+    border:1px solid gray;
+    margin:0;
+    list-style-type: none;
+    padding: 33px  40px 0 45px;
+  }
+  &__filter-control {
+    margin:0;
+    list-style-type: none;
+    padding: 25px 181px;
+  }
+  &__filter-item {
+    display: inline-block;
+    font-size: 30px;
+    font-weight: bold;
+    margin-left: 31px;
+    cursor:pointer;
+    &:first-child {
+      margin-left:0;
+    }
+  }
+
+}
+
+.task-item {
+  margin-bottom: 30px;
+  &__check{
+    display:inline-block;
+    vertical-align: middle;
+    width: 47px;
+    height: 48px;
+    border: 4px solid gray;
+    clear: left;
+    cursor:pointer;
+  }
+  &__text{
+    display: inline-block;
+    vertical-align: middle;
+    width: 485px;
+    font-size: 26px;
+    padding: 0  15px;
+  }
+  &__delete {
+    display: inline-block;
+    vertical-align: middle;
+    &::after {
+      font-size: 40px;
+      color:gray;
+      margin-left:5px;
+      content:'\2715';
+      cursor:pointer;
+    }
+  }
+  &.checked {
+    .task-item__check {
+      background-color: lightgreen;
+      &::after {
+        content: '\2713';
+        font-size: 80px;
+        position:relative;
+        top: -25px;
+        left: -10px;
+        color:darken(gray, 10%);
+      }
+    }
+  }
+}

@@ -2,5 +2,26 @@
 {% extends "templates/layout.twig" %}
 
 {% block page %}
-    <div id='mount-point'></div>
+    <div id='mount-point'>
+        <div class="todo">
+            <div class="todo__header"><h2 class="todo__title">What do you need to do?</h2></div>
+            <ul class="todo__task-list">
+                {% for i in 1..5 %}
+                    {% set checked = loop.index < 4 ? 'checked' : '' %}
+                    <li class="task-item {{ checked }}">
+                        <div class="task-item__check"></div>
+                        <div class="task-item__text ">
+                            When breaking large sauerkraut
+                        </div>
+                        <div class="task-item__delete"></div>
+                    </li>
+                {% endfor %}
+            </ul>
+            <ul class="todo__filter-control">
+                <li class="todo__filter-item">All</li>
+                <li class="todo__filter-item">New</li>
+                <li class="todo__filter-item">Completed</li>
+            </ul>
+        </div>
+    </div>
 {% endblock %}

@@ -7,7 +7,7 @@ import NotesApp from './parts/NotesApp'
 import Timer from "./parts/Timer";
 
 
-ReactDOM.render(
-    <NotesApp/>,
-    document.getElementById('mount-point')
-);
+// ReactDOM.render(
+//     {<ToDoApp/>,}
+    // document.getElementById('mount-point')
+// );
