@@ -64,7 +64,16 @@
       display: none;
     }
   }
+  &__add-task-button {
+    position: absolute;
+    top: 5px;
+    right: 60px;
+    margin-right: 0;
+    width: 55px;
+    height: 45px;
+  }
 }
+
 
 .task-item {
   margin-bottom: 30px;

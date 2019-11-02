@@ -9,23 +9,38 @@ export default class ToDoApp extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            filter: filters[0].name
+            filter: filters[0].name,
+            tasks: this.getTasksInit()
+
         }
+
     }
-    getTasks() {
+
+    get tasks(){
+        return this.state.tasks;
+    }
+
+    getTasksInit() {
         return [
-            this.createTask(),
-            this.createTask(),
-            this.createTask(),
-            this.createTask(),
-            this.createTask()
+            this.createTask('When breaking large sauerkraut'),
+            this.createTask('When breaking large sauerkraut'),
+            this.createTask('When breaking large sauerkraut'),
+            this.createTask('When breaking large sauerkraut'),
+            this.createTask('When breaking large sauerkraut')
         ];
     }
 
-    createTask() {
+    createTask(text) {
         return {
-            text: 'When breaking large sauerkraut',
+            text: text,
             isDone: false
+        }
+    }
+    onTaskAdd(text){
+        if (text){
+            this.setState({
+                tasks:   this.state.tasks.concat([this.createTask(text)])
+            });
         }
     }
 
@@ -33,8 +48,8 @@ export default class ToDoApp extends React.Component {
         return (
             <div className="todo">
                 <div className="todo__header"><h2 className="todo__title">What do you need to do?</h2></div>
-                <AddTask/>
-                <TaskList tasks={this.getTasks()}/>
+                <AddTask onTaskAdd={(text)=>this.onTaskAdd(text)}/>
+                <TaskList tasks={this.tasks}/>
                 <FilterControl filters={filters} checked={this.state.filter}/>
             </div>
         );
