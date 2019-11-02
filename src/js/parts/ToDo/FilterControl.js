@@ -7,9 +7,15 @@ export default class FilterControl extends React.Component{
             <ul className="todo__filter-control">
                 {
                     this.props.filters.map((v)=>{
-                        return (<li key={v.name} className={classNames('todo__filter-item',{
-                            'todo__filter-item_active': this.props.checked === v.name
-                        })}>{v.name}</li>)
+                        return (
+                            <li key={v.name}
+                                className={classNames('todo__filter-item',{
+                                'todo__filter-item_active': this.props.checked.name === v.name
+                            })} onClick={()=>this.props.onClick(v)}
+                            >
+                                {v.name}
+                            </li>
+                        )
                     })
                 }
             </ul>

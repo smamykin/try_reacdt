@@ -1,5 +1,5 @@
 export const filters = [
     {name:'all'},
-    {name:'new'},
-    {name:'completed'}
+    {name:'new', check: (task) => !task.isDone},
+    {name:'completed', check: (task) => task.isDone}
 ];
