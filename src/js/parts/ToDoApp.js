@@ -1,5 +1,4 @@
 import React from 'react';
-import classNames from 'classnames';
 import AddTask from "./ToDo/AddTask";
 import TaskList from "./ToDo/List";
 import FilterControl from "./ToDo/FilterControl";
@@ -11,23 +10,26 @@ export default class ToDoApp extends React.Component {
         this.state = {
             filter: filters[0].name,
             tasks: this.getTasksInit()
-
         }
-
     }
 
     get tasks(){
         return this.state.tasks;
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        localStorage.setItem('tasks', JSON.stringify(this.state.tasks));
+    }
+
     getTasksInit() {
-        return [
-            this.createTask('When breaking large sauerkraut'),
-            this.createTask('When breaking large sauerkraut'),
-            this.createTask('When breaking large sauerkraut'),
-            this.createTask('When breaking large sauerkraut'),
-            this.createTask('When breaking large sauerkraut')
-        ];
+        let tasks = localStorage.getItem('tasks');
+        if (tasks){
+            tasks = JSON.parse(tasks);
+        }
+        if (!Array.isArray(tasks)){
+            tasks = [];
+        }
+        return tasks;
     }
 
     createTask(text) {
