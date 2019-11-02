@@ -41,7 +41,7 @@ export default class ToDoApp extends React.Component {
                     })}
                 </ul>
                 <ul className="todo__filter-control">
-                    <li className="todo__filter-item">All</li>
+                    <li className="todo__filter-item todo__filter-item_active">All</li>
                     <li className="todo__filter-item">New</li>
                     <li className="todo__filter-item">Completed</li>
                 </ul>

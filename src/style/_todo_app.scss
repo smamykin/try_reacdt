@@ -28,8 +28,13 @@
     font-weight: bold;
     margin-left: 31px;
     cursor:pointer;
+    color:gray;
+
     &:first-child {
       margin-left:0;
+    }
+    &_active {
+      color:black;
     }
   }
   &__add-task {
