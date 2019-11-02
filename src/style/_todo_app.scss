@@ -12,6 +12,7 @@
   }
   &__task-list{
     border:1px solid gray;
+    border-top: 0;
     margin:0;
     list-style-type: none;
     padding: 33px  40px 0 45px;
@@ -31,7 +32,32 @@
       margin-left:0;
     }
   }
+  &__add-task {
+    position:relative;
+    padding:5px 60px;
+    border-right: 1px solid gray;
+    border-left: 1px solid gray;
+    cursor:text;
+  }
 
+  &__add-task-label{
+    font-size: 26px;
+    color:gray;
+    position:absolute;
+    padding:7px 7px;
+  }
+
+  &__add-task-input {
+    width: 100%;
+    padding:5px;
+    font-size: 26px;
+  }
+
+  &__add-task{
+    &_focused &-label {
+      display: none;
+    }
+  }
 }
 
 .task-item {

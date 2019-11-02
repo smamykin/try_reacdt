@@ -23,10 +23,14 @@ export default class ToDoApp extends React.Component {
         return (
             <div className="todo">
                 <div className="todo__header"><h2 className="todo__title">What do you need to do?</h2></div>
+                <div className='todo__add-task'>
+                    <label className="todo__add-task-label">Добавить задачу</label>
+                    <input className="todo__add-task-input" name='add-task'type={'text'}/>
+                </div>
                 <ul className="todo__task-list">
-                    {this.getTasks().map((task) => {
+                    {this.getTasks().map((task, index) => {
                         return (
-                            <li className={classNames('task-item', {checked: task.isDone})}>
+                            <li key={index} className={classNames('task-item', {checked: task.isDone})}>
                                 <div className="task-item__check"/>
                                 <div className="task-item__text ">
                                     {task.text}
