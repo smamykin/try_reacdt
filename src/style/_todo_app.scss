@@ -104,7 +104,7 @@
       cursor:pointer;
     }
   }
-  &.checked {
+  &_checked {
     .task-item__check {
       background-color: lightgreen;
       &::after {
@@ -115,6 +115,10 @@
         left: -10px;
         color:darken(gray, 10%);
       }
+    }
+    .task-item__text {
+      text-decoration: line-through;
+      color:gray;
     }
   }
 }

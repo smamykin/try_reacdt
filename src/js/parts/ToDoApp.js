@@ -31,9 +31,18 @@ export default class ToDoApp extends React.Component {
         }
         return tasks;
     }
+    getMaxId(){
+        if (!this.state.tasks.length){
+            return -1;
+        }
+
+        let ids = this.state.tasks.map((x)=>x.id);
+        return Math.max(ids)
+    }
 
     createTask(text) {
         return {
+            id: this.getMaxId() + 1,
             text: text,
             isDone: false
         }
@@ -46,12 +55,22 @@ export default class ToDoApp extends React.Component {
         }
     }
 
+    onCheck(id){
+        let newTasks = this.state.tasks.map((v)=>{
+            if (v.id === id){
+                v.isDone = !v.isDone;
+            }
+            return v;
+        });
+        this.setState({tasks: newTasks});
+    }
+
     render() {
         return (
             <div className="todo">
                 <div className="todo__header"><h2 className="todo__title">What do you need to do?</h2></div>
                 <AddTask onTaskAdd={(text)=>this.onTaskAdd(text)}/>
-                <TaskList tasks={this.tasks}/>
+                <TaskList onCheck={(id)=>this.onCheck(id)} tasks={this.tasks}/>
                 <FilterControl filters={filters} checked={this.state.filter}/>
             </div>
         );

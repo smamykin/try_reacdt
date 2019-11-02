@@ -6,10 +6,10 @@ export default class TaskList extends React.Component
     render(){
         return (
             <ul className="todo__task-list">
-                {this.props.tasks.map((task, index) => {
+                {this.props.tasks.map((task) => {
                     return (
-                        <li key={index} className={classNames('task-item', {checked: task.isDone})}>
-                            <div className="task-item__check"/>
+                        <li key={task.id} className={classNames('task-item', {'task-item_checked': task.isDone})}>
+                            <div className="task-item__check" onClick={()=>this.props.onCheck(task.id)}/>
                             <div className="task-item__text ">
                                 {task.text}
                             </div>
