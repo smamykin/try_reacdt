@@ -37,7 +37,7 @@ export default class ToDoApp extends React.Component {
         }
 
         let ids = this.state.tasks.map((x)=>x.id);
-        return Math.max(ids)
+        return Math.max(...ids)
     }
 
     createTask(text) {
@@ -65,12 +65,19 @@ export default class ToDoApp extends React.Component {
         this.setState({tasks: newTasks});
     }
 
+    onDelete(id){
+        let newTasks = this.state.tasks.filter((v)=>{
+            return v.id !== id;
+        });
+        this.setState({tasks: newTasks})
+    }
+
     render() {
         return (
             <div className="todo">
                 <div className="todo__header"><h2 className="todo__title">What do you need to do?</h2></div>
                 <AddTask onTaskAdd={(text)=>this.onTaskAdd(text)}/>
-                <TaskList onCheck={(id)=>this.onCheck(id)} tasks={this.tasks}/>
+                <TaskList onCheck={(id)=>this.onCheck(id)} onDelete={(id) => this.onDelete(id)} tasks={this.tasks}/>
                 <FilterControl filters={filters} checked={this.state.filter}/>
             </div>
         );
