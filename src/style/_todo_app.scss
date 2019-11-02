@@ -66,7 +66,6 @@
   }
   &__add-task-button {
     position: absolute;
-    top: 5px;
     right: 60px;
     margin-right: 0;
     width: 55px;
@@ -77,6 +76,7 @@
 
 .task-item {
   margin-bottom: 30px;
+  position:relative;
   &__check{
     display:inline-block;
     vertical-align: middle;

@@ -80,13 +80,26 @@ export default class ToDoApp extends React.Component {
         this.setState({filter: newFilter});
 
     }
+    onChangeItem(task){
+        let newTasks = this.state.tasks.map((v)=>{
+            if (v.id === task.id){
+                return task;
+            }
+            return v;
+        });
+        this.setState({tasks: newTasks});
+    }
 
     render() {
         return (
             <div className="todo">
                 <div className="todo__header"><h2 className="todo__title">What do you need to do?</h2></div>
                 <AddTask onTaskAdd={(text)=>this.onTaskAdd(text)}/>
-                <TaskList onCheck={(id)=>this.onCheck(id)} onDelete={(id) => this.onDelete(id)} tasks={this.tasks}/>
+                <TaskList onCheck={(id)=>this.onCheck(id)}
+                          onDelete={(id) => this.onDelete(id)}
+                          tasks={this.tasks}
+                          onChangeItem={(task)=> this.onChangeItem(task)}
+                />
                 <FilterControl onClick={(name)=> this.applyFilter(name)} filters={filters} checked={this.state.filter}/>
             </div>
         );
