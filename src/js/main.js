@@ -6,10 +6,11 @@ import ReactDOM from 'react-dom';
 import NotesApp from './parts/NotesApp'
 import Timer from "./parts/Timer";
 import ToDoApp from "./parts/ToDoApp";
+import FinanceApp from "./parts/FinanceApp";
 
 
 ReactDOM.render(
-    <ToDoApp/>,
+    <FinanceApp/>,
     document.getElementById('mount-point')
 );
 
