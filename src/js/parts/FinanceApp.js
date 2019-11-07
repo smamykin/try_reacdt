@@ -1,12 +1,12 @@
 import React from 'react';
 import {CssBaseline} from "@material-ui/core";
 import Paper from "@material-ui/core/Paper";
-import makeStyles from "@material-ui/core/styles/makeStyles";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Table from "@material-ui/core/Table";
 import TableCell from "@material-ui/core/TableCell";
 import TableBody from "@material-ui/core/TableBody";
+import Icon from "@material-ui/core/Icon";
 
 const recordTypes = {
     'expenses': 0,
@@ -27,6 +27,13 @@ const data = [
 
 export default class FinanceApp extends React.Component
 {
+    constructor(props){
+        super(props);
+        this.state = {
+            data: data
+        }
+    }
+
     render(){
 
         return (
@@ -36,19 +43,23 @@ export default class FinanceApp extends React.Component
                     <Table aria-label="spanning table">
                         <TableHead>
                             <TableRow>
-                                {columns.map(x => {return <TableCell align={'center'}>{x.label}</TableCell>})}
+                                <TableCell>Actions</TableCell>
+                                {columns.map((x,i) => {return <TableCell key={i} align={'center'}>{x.label}</TableCell>})}
+                                <TableCell className={'table__header-action'}><Icon>add_circle</Icon></TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {data.map(row => (
+                            {this.state.data.map(row => (
                                 <TableRow key={row.id}>
+                                    <TableCell className={'table__row-action-cell'}><Icon>edit</Icon><Icon>delete</Icon></TableCell>
                                     <TableCell align={'center'}>{row.value}</TableCell>
                                     <TableCell align={'center'}>{row.type}</TableCell>
+                                    <TableCell/>
                                 </TableRow>
                             ))}
                             <TableRow>
-                                <TableCell align="right">Total</TableCell>
-                                <TableCell>{this.getSum()}</TableCell>
+                                <TableCell colSpan={2} align={"right"}>Total</TableCell>
+                                <TableCell colSpan={2} align={"left"}>{this.getSum()}</TableCell>
                             </TableRow>
                         </TableBody>
                     </Table>
@@ -58,7 +69,7 @@ export default class FinanceApp extends React.Component
     }
 
     getSum() {
-        return data.reduce((carry, el) => {
+        return this.state.data.reduce((carry, el) => {
             if (el.type === recordTypes.income){
                 carry += el.value;
             } else {
