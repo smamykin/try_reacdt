@@ -2,7 +2,22 @@
   &__header-action {
     width: 50px;
   }
-  &__row-action-cell{
+  &__row-action-cell {
     width:100px;
+  }
+  &__action-delete {
+    &:hover,&:focus {
+      color:tomato;
+    }
+  }
+  &__action-edit {
+    &:hover,&:focus {
+      color:tomato;
+    }
+  }
+  &__action-add , &__action-save{
+    &:hover,&:focus {
+      color:tomato;
+    }
   }
 }
