@@ -1,6 +1,6 @@
-import classNames from "classnames";
 import React from "react";
 import ListItem from "./ListItem";
+import PropTypes from "prop-types"
 
 export default class TaskList extends React.Component {
     render() {
@@ -10,5 +10,13 @@ export default class TaskList extends React.Component {
             </ul>
         );
     }
-
 }
+
+TaskList.propTypes = {
+    tasks: PropTypes.arrayOf(PropTypes.exact({
+        id: PropTypes.number.isRequired,
+        text: PropTypes.string.isRequired,
+        isDone: PropTypes.bool.isRequired
+    }))
+};
+

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default class AddTask extends React.Component {
     constructor(props) {
@@ -49,3 +50,6 @@ export default class AddTask extends React.Component {
         )
     }
 }
+AddTask.propTypes = {
+    onTaskAdd: PropTypes.func.isRequired
+};

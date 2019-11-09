@@ -3,6 +3,7 @@ import AddTask from "./ToDo/AddTask";
 import TaskList from "./ToDo/List";
 import FilterControl from "./ToDo/FilterControl";
 import {filters} from "./constants";
+import "../../style/_todo_app.scss";
 
 export default class ToDoApp extends React.Component {
     constructor(props){
@@ -78,8 +79,8 @@ export default class ToDoApp extends React.Component {
 
     applyFilter(newFilter){
         this.setState({filter: newFilter});
-
     }
+
     onChangeItem(task){
         let newTasks = this.state.tasks.map((v)=>{
             if (v.id === task.id){

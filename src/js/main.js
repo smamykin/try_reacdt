@@ -10,7 +10,7 @@ import FinanceApp from "./parts/FinanceApp";
 
 
 ReactDOM.render(
-    <FinanceApp/>,
+    <ToDoApp/>,
     document.getElementById('mount-point')
 );
 

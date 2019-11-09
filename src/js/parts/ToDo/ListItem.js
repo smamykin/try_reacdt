@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from "classnames";
+import PropTypes from "prop-types";
 
 export default class ListItem extends React.Component {
     constructor(props){
@@ -60,3 +61,14 @@ export default class ListItem extends React.Component {
         </form>;
     }
 }
+
+ListItem.propTypes = {
+    task: PropTypes.exact({
+        id: PropTypes.number.isRequired,
+        text: PropTypes.string.isRequired,
+        isDone: PropTypes.bool.isRequired,
+    }),
+    onChangeItem: PropTypes.func.isRequired,
+    onDelete: PropTypes.func.isRequired,
+    onCheck: PropTypes.func.isRequired,
+};
