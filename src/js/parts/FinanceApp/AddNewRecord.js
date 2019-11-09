@@ -15,16 +15,18 @@ export default class AddNewRecord extends React.Component
     constructor(props){
         super(props);
         this.state = {
-            type: '',
-            value: '',
+            type: props.row ?  props.row.type : '',
+            value: props.row ?  props.row.value : '',
+            id: props.row ? props.row.id : null,
         };
     }
     save(){
-        this.props.save({value: this.state.value, type: this.state.type});
+        this.props.save({value: this.state.value, type: this.state.type, id: this.state.id});
         this.setState({
-            value: '',
-            type:''
-        })
+            type: props.row ?  props.row.type : '',
+            value: props.row ?  props.row.value : '',
+            id: props.row ? props.row.id : null,
+        });
     }
 
     render(){
@@ -40,7 +42,7 @@ export default class AddNewRecord extends React.Component
                     type="number"
                     value={this.state.value}
                     onChange={(e) => {
-                        this.setState({value: e.target.value})
+                        this.setState({value: +e.target.value})
                     }}
                 />
             </TableCell>
@@ -51,7 +53,7 @@ export default class AddNewRecord extends React.Component
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
                         value={this.state.type}
-                        onChange={(e)=> this.setState({type: e.target.value})}
+                        onChange={(e)=> this.setState({type: +e.target.value})}
                     >
                         <MenuItem value={recordTypes.income}>Income</MenuItem>
                         <MenuItem value={recordTypes.expenses}>Expenses</MenuItem>
