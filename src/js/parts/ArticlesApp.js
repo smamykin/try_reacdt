@@ -3,7 +3,8 @@ import './ArticlesApp/_common.scss'
 import Article from "./ArticlesApp/Article";
 
 import ArticleList from "./ArticlesApp/ArticleList";
-import {HashRouter as Router, Switch, Route} from 'react-router-dom'
+import {HashRouter as Router, Switch, Route} from 'react-router-dom';
+import store from './ArticlesApp/articles.json';
 
 export default class ArticlesApp extends React.Component
 {
@@ -13,10 +14,10 @@ export default class ArticlesApp extends React.Component
                 <div className='container'>
                     <Switch>
                         <Route path='/articles'>
-                            <ArticleList/>
+                            <ArticleList articles={store.articles}/>
                         </Route>
                         <Route path='/article/:id'>
-                            <Article/>
+                            <Article articles={store.articles}/>
                         </Route>
                     </Switch>
                 </div>
