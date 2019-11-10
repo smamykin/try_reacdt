@@ -45,3 +45,24 @@ html, body {
   }
 }
 /* endregion */
+
+/* region article */
+.article-page {
+  margin: 25px 0;
+  box-shadow: 0 0 15px black;
+  overflow: hidden;
+
+  &__title {
+    padding: 22px;
+    font-size: 32px;
+    box-shadow: 0 4px 15px lighten(black, 50%);
+  }
+  &__body {
+    font-size: 18px;
+    padding: 5px;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+  }
+}
+/* endregion */
