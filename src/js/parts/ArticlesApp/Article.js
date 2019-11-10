@@ -1,7 +1,10 @@
 import React from "react";
+import {withRouter, Link} from 'react-router-dom';
 
-export default class Article extends React.Component{
+ class Article extends React.Component{
     render() {
+        console.log(this.props);
+        console.log(this.state);
         return (
             <div className='container'>
                 <div className='article-page'>
@@ -10,10 +13,11 @@ export default class Article extends React.Component{
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur at atque, consectetur, doloribus earum error est excepturi incidunt laboriosam maxime neque nobis quasi reprehenderit, tempora vero? Assumenda fuga ut voluptatum?
                     </div>
                     <div className="article-page__back-block">
-                        <a href="#" className="article-page__back-block">back</a>
+                        <Link to="/articles" className="article-page__back-block">back</Link>
                     </div>
                 </div>
             </div>
         );
     }
 }
+export default withRouter(Article);
