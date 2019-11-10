@@ -7,10 +7,11 @@ import NotesApp from './parts/NotesApp'
 import Timer from "./parts/Timer";
 import ToDoApp from "./parts/ToDoApp";
 import FinanceApp from "./parts/FinanceApp";
+import ArticlesApp from "./parts/ArticlesApp";
 
 
 ReactDOM.render(
-    <ToDoApp/>,
+    <ArticlesApp/>,
     document.getElementById('mount-point')
 );
 
