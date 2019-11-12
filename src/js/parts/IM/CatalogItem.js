@@ -1,5 +1,6 @@
 import * as React from "react";
 import {withRouter} from "react-router-dom";
+import PropTypes from 'prop-types';
 
 class CatalogItem extends React.Component {
     constructor(props) {
@@ -69,5 +70,8 @@ class CatalogItem extends React.Component {
     }
 
 }
+CatalogItem.propTypes = {
+    getItemById: PropTypes.func.isRequired
+};
 
 export default withRouter(CatalogItem)

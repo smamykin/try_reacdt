@@ -73,7 +73,6 @@ export default class IM extends React.Component
     }
 
     render() {
-        console.log(this.state.cart);
         return (
             <Router>
                 <header className="header">
