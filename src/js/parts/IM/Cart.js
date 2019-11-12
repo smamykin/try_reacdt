@@ -1,15 +1,11 @@
 import * as React from "react";
 import {Icon} from "@material-ui/core";
+import PropTypes from 'prop-types';
 
 export default class Cart extends React.Component
 {
     get cartItems(){
-        let result = [];
-        for (let i = 4; i--;){
-            result.push({quantity:1, product: {id:i,price:33, name: 'Product Name'}})
-        }
-
-        return result;
+        return this.props.cart;
     }
 
     render() {
@@ -32,5 +28,17 @@ export default class Cart extends React.Component
             </div>
         );
     }
-
 }
+// PropTypes
+Cart.propTypes = {
+    cart: PropTypes.arrayOf(
+        PropTypes.exact({
+            quantity: PropTypes.number.isRequired,
+            product: PropTypes.exact({
+                id: PropTypes.number.isRequired,
+                name: PropTypes.string.isRequired,
+                price: PropTypes.number.isRequired
+            })
+        })
+    ).isRequired
+};

@@ -66,7 +66,7 @@ export default class IM extends React.Component
                         </Route>
                         <Route path='/cart'>
                             <h1 className="page_title">Cart</h1>
-                            <Cart/>
+                            <Cart cart={this.state.cart}/>
                         </Route>
                         <Route path='/'>
                             <h1 className="page_title">About</h1>
