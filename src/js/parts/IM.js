@@ -8,6 +8,17 @@ import CatalogItem from './IM/CatalogItem'
 
 export default class IM extends React.Component
 {
+    getGoods(){
+        let result = [];
+        for (let i = 9; i--;){
+            result.push({id: i, name: `Product Name ${i}`})
+        }
+
+        return result;
+    }
+    buy() {
+
+    }
     render() {
         return (
             <Router>
@@ -25,7 +36,7 @@ export default class IM extends React.Component
                                     <CatalogItem/>
                                 </Route>
                                 <Route path='/goods'>
-                                    <GoodsList/>
+                                    <GoodsList buy={(v)=>this.buy(v)} getGoods={this.getGoods()}/>
                                 </Route>
                             </Switch>
                         </Route>
@@ -42,6 +53,5 @@ export default class IM extends React.Component
             </Router>
         );
     }
-
 }
 
