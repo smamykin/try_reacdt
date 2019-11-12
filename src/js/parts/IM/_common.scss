@@ -127,3 +127,14 @@ p {
     }
   }
 }
+.catalog-item {
+  &__img-wrap {
+    width:30%;
+    float:left;
+  }
+
+  &__desc {
+    float:right;
+    width: 70%;
+  }
+}

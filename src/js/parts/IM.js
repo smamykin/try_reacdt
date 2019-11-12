@@ -30,12 +30,16 @@ export default class IM extends React.Component
                 <div className='container'>
                     <Switch>
                         <Route path='/goods'>
-                            <h1 className="page_title">Catalog</h1>
                             <Switch>
                                 <Route path='/goods/:id'>
-                                    <CatalogItem/>
+                                    <CatalogItem getItemById={(id)=> {
+                                        return this.getGoods().find((v) => {
+                                            return v.id = id;
+                                        });
+                                    }}/>
                                 </Route>
                                 <Route path='/goods'>
+                                    <h1 className="page_title">Catalog</h1>
                                     <GoodsList buy={(v)=>this.buy(v)} getGoods={this.getGoods()}/>
                                 </Route>
                             </Switch>
