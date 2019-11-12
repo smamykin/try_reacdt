@@ -4,6 +4,7 @@ import './IM/_common.scss'
 import Home from './IM/Home'
 import GoodsList from './IM/GoodsList'
 import Cart from './IM/Cart'
+import CatalogItem from './IM/CatalogItem'
 
 export default class IM extends React.Component
 {
@@ -17,17 +18,24 @@ export default class IM extends React.Component
                 </header>
                 <div className='container'>
                     <Switch>
-                        <Route path='/'>
-                            <h1 className="page_title">About</h1>
-                            <Home/>
-                        </Route>
                         <Route path='/goods'>
                             <h1 className="page_title">Catalog</h1>
-                            <GoodsList/>
+                            <Switch>
+                                <Route path='/goods/:id'>
+                                    <CatalogItem/>
+                                </Route>
+                                <Route path='/goods'>
+                                    <GoodsList/>
+                                </Route>
+                            </Switch>
                         </Route>
                         <Route path='/cart'>
                             <h1 className="page_title">Cart</h1>
-                            {/*<Cart/>*/}
+                            <Cart/>
+                        </Route>
+                        <Route path='/'>
+                            <h1 className="page_title">About</h1>
+                            <Home/>
                         </Route>
                     </Switch>
                 </div>
