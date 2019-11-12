@@ -3,11 +3,10 @@ import '../style/main.scss';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ArticlesApp from "./parts/ArticlesApp";
-
+import IM from '../js/parts/IM'
 
 ReactDOM.render(
-    <ArticlesApp/>,
+    <IM/>,
     document.getElementById('mount-point')
 );
 
