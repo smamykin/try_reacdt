@@ -81,7 +81,6 @@ p {
   flex-wrap: wrap;
   &__item {
     margin: 40px 0;
-
   }
 }
 
@@ -95,10 +94,16 @@ p {
   position: relative;
 
   &__title{
+    display: block;
     margin: 5px;
     text-align: center;
     padding: 10px;
     font-size: 24px;
+    color:black;
+    text-decoration: none;
+    &:hover{
+      text-decoration: underline;
+    }
   }
   &__buy-button {
     position: absolute;
