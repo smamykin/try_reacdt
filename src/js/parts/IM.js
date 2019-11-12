@@ -22,10 +22,24 @@ export default class IM extends React.Component
 
         return result;
     }
-    buy() {
+    buy(product) {
+        let isAddAlready = false,
+            cart = this.state.cart.map((v) => {
+            if (v.product.id  === product.id){
+                v.quantity += 1;
+                isAddAlready = true;
+            }
+            return v;
+        });
+        if (!isAddAlready){
+            cart.push({quantity:1, product})
+        }
+        this.setState({cart});
 
     }
+
     render() {
+        console.log(this.state.cart);
         return (
             <Router>
                 <header className="header">

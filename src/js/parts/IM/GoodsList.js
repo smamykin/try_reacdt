@@ -31,7 +31,7 @@ export default class GoodsList extends React.Component
                        return (
                            <div key={v.id} className="catalog-list__item catalog-card" style={style}>
                                <Link to={'/goods/' + v.id} className="catalog-card__title">{v.name} </Link>
-                               <div className="catalog-card__buy-button" onClick={this.props.buy(v)}>Купит</div>
+                               <div className="catalog-card__buy-button" onClick={() => this.props.buy(v)}>Купит</div>
                            </div>
                        );
                     })}
@@ -42,12 +42,12 @@ export default class GoodsList extends React.Component
 }
 
 GoodsList.propTypes = {
-    getGoods: PropTypes.arrayOf(PropTypes.exact(
+    goods: PropTypes.arrayOf(PropTypes.exact(
         {
             id: PropTypes.number.isRequired,
             name: PropTypes.string.isRequired,
             price: PropTypes.number.isRequired
         }
-    )),
+    )).isRequired,
     buy: PropTypes.func.isRequired
 };
