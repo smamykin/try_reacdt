@@ -8,6 +8,12 @@ import CatalogItem from './IM/CatalogItem'
 
 export default class IM extends React.Component
 {
+    constructor(props){
+        super(props);
+        this.state = {
+            cart: []
+        }
+    }
     getGoods(){
         let result = [];
         for (let i = 9; i--;){
@@ -40,7 +46,7 @@ export default class IM extends React.Component
                                 </Route>
                                 <Route path='/goods'>
                                     <h1 className="page_title">Catalog</h1>
-                                    <GoodsList buy={(v)=>this.buy(v)} getGoods={this.getGoods()}/>
+                                    <GoodsList buy={(v)=>this.buy(v)} goods={this.getGoods()}/>
                                 </Route>
                             </Switch>
                         </Route>

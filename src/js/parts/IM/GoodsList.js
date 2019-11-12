@@ -4,15 +4,27 @@ import {Link} from "react-router-dom";
 
 export default class GoodsList extends React.Component
 {
+    constructor(props){
+        super(props);
+        this.state = {
+            goods: props.goods
+        }
+    }
+
+    onSearch(evt) {
+        let goods  = this.props.goods.filter((v) => v.name.indexOf(evt.target.value) >= 0);
+
+        this.setState({goods});
+    }
+
     render() {
         return (
             <div className={'catalog'}>
-
                 <div className="catalog-search">
-                    <input type="text" className="catalog-search__input" placeholder={'Search'}/>
+                    <input type="text" className="catalog-search__input" placeholder={'Search'} onChange={(evt)=>this.onSearch(evt)}/>
                 </div>
                 <div className={'catalog-list'}>
-                    {this.props.getGoods.map((v) => {
+                    {this.state.goods.map((v) => {
                         let style = {
                             backgroundImage: 'url("/images/image 1.png")'
                         };
