@@ -33,7 +33,8 @@ GoodsList.propTypes = {
     getGoods: PropTypes.arrayOf(PropTypes.exact(
         {
             id: PropTypes.number.isRequired,
-            name: PropTypes.string.isRequired
+            name: PropTypes.string.isRequired,
+            price: PropTypes.number.isRequired
         }
     )),
     buy: PropTypes.func.isRequired

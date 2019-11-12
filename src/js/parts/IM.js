@@ -11,7 +11,7 @@ export default class IM extends React.Component
     getGoods(){
         let result = [];
         for (let i = 9; i--;){
-            result.push({id: i, name: `Product Name ${i}`})
+            result.push({id: i, name: `Product Name ${i}`, price: 33})
         }
 
         return result;
