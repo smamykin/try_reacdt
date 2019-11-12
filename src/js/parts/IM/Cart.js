@@ -15,13 +15,13 @@ export default class Cart extends React.Component
                     return (
                         <div key={item.product.id} className="cart-item">
                             <div className="cart-item__item cart-item__product-name">{item.product.name}</div>
-                            <div className={'cart-item__item cart-item__quantity-plus'}><Icon>add</Icon></div>
+                            <div className={'cart-item__item cart-item__quantity-plus'} onClick={() => this.props.add(item)}><Icon>add</Icon></div>
                             <div className="cart-item__item cart-item__quantity">{item.quantity}</div>
-                            <div className={'cart-item__item cart-item__quantity-minus'}><Icon>remove</Icon></div>
+                            <div className={'cart-item__item cart-item__quantity-minus'} onClick={() => this.props.remove(item)}><Icon>remove</Icon></div>
                             <div className="cart-item__item cart-item__price">
                                 {item.product.price * item.quantity}$
                             </div>
-                            <div className="cart-item__item cart-item__delete"><Icon>delete</Icon></div>
+                            <div className="cart-item__item cart-item__delete" onClick={()=> this.props.delete(item)}><Icon>delete</Icon></div>
                         </div>
                     );
                 })}
@@ -40,5 +40,8 @@ Cart.propTypes = {
                 price: PropTypes.number.isRequired
             })
         })
-    ).isRequired
+    ).isRequired,
+    add: PropTypes.func.isRequired,
+    remove: PropTypes.func.isRequired,
+    delete: PropTypes.func.isRequired,
 };

@@ -38,6 +38,40 @@ export default class IM extends React.Component
 
     }
 
+    remove(cartItem){
+        if (cartItem.quantity === 1){
+            this.delete(cartItem);
+            return;
+        }
+
+        let cart = this.state.cart.map((v) => {
+            if (v.product.id === cartItem.product.id){
+                v.quantity -= 1;
+            }
+
+            return v;
+        });
+
+        this.setState({cart});
+    }
+    delete(cartItem){
+        let cart = this.state.cart.filter((v)=>{
+            return v.product.id !== cartItem.product.id
+        });
+        this.setState({cart});
+    }
+    add(cartItem){
+        let cart = this.state.cart.map((v) => {
+            if (v.product.id === cartItem.product.id){
+                v.quantity += 1;
+            }
+
+            return v;
+        });
+
+        this.setState({cart});
+    }
+
     render() {
         console.log(this.state.cart);
         return (
@@ -66,7 +100,7 @@ export default class IM extends React.Component
                         </Route>
                         <Route path='/cart'>
                             <h1 className="page_title">Cart</h1>
-                            <Cart cart={this.state.cart}/>
+                            <Cart cart={this.state.cart} add={(v) => this.add(v)} remove={(v) => this.remove(v)} delete={(v) => this.delete(v)}/>
                         </Route>
                         <Route path='/'>
                             <h1 className="page_title">About</h1>
