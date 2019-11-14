@@ -70,6 +70,19 @@ AppDispatcher.register(function(action) {
             break;
         }
 
+        case AppConstants.TASK_DELETE_SUCCESS: {
+
+            _tasks = _tasks.filter((v) => action.taskId !== v.id);
+
+            TasksStore.emitChange();
+            break;
+        }
+        case AppConstants.TASK_DELETE_FAIL: {
+            _error = action.error;
+
+            TasksStore.emitChange();
+            break;
+        }
         default: {
         }
     }

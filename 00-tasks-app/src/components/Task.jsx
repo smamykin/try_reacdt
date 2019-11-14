@@ -26,6 +26,9 @@ const Task = React.createClass({
     handleEdit(e) {
         this.setState({ isEditing: true }, this.focusInput);
     },
+    handleDelete(e){
+        this.deleteTask();
+    },
 
     handleCancel() {
         this.cancelTask();
@@ -59,6 +62,10 @@ const Task = React.createClass({
         this.props.onUpdate({ text: this.input.value });
 
         this.setState({ isEditing: false });
+    },
+
+    deleteTask(){
+        this.props.onDelete();
     },
 
     cancelTask() {
@@ -98,7 +105,7 @@ const Task = React.createClass({
 
                     <IconMenu iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}>
                         <MenuItem onClick={this.handleEdit}>Edit</MenuItem>
-                        <MenuItem>Delete</MenuItem>
+                        <MenuItem onClick={this.handleDelete}>Delete</MenuItem>
                     </IconMenu>
                 </div>
         );
