@@ -62,7 +62,13 @@ const TasklistsPage = React.createClass({
 
     render() {
         const { router } = this.context;
-
+        const isSelectedList = (list) => {
+            console.log(this.props.params.id === list.id);
+            return this.props.params.id === list.id
+        };
+        const styles = {
+            backgroundColor: 'rgba(255, 0, 0, 0.4)'
+        };
         return (
             <div className='TasklistsPage'>
                 <div className='TasklistsPage__menu'>
@@ -90,6 +96,8 @@ const TasklistsPage = React.createClass({
                                         leftIcon={<FolderIcon />}
                                         primaryText={list.name}
                                         onClick={router.push.bind(null, `/lists/${list.id}`)}
+                                        selected={isSelectedList(list)}
+                                        style={isSelectedList(list) ? styles : null}
                                     />
                                 )
                             }
