@@ -2,3 +2,5 @@
 /node_modules
 /dist
 npm-debug.log
+/00-tasks-app/public/
+/00-tasks-app/node_modules/
