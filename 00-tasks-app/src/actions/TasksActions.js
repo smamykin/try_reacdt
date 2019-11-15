@@ -46,9 +46,12 @@ const TasksActions = {
         api.updateTask({
             taskListId: params.taskListId,
             taskId: params.taskId,
-            title: params.text
+            title: params.text,
+            notes: params.desc,
+            due: params.date
         })
         .then(data => {
+            debugger;
             AppDispatcher.dispatch({
                 type   : AppConstants.TASK_UPDATE_SUCCESS,
                 task   : data,
@@ -56,6 +59,7 @@ const TasksActions = {
             });
         })
         .catch(err => {
+            debugger;
             AppDispatcher.dispatch({
                 type  : AppConstants.TASK_UPDATE_FAIL,
                 error : err

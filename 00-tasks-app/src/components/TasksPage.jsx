@@ -55,11 +55,13 @@ const TasksPage = React.createClass({
         });
     },
 
-    handleTaskUpdate(taskId, { text }) {
+    handleTaskUpdate(taskId, { text, desc, date }) {
         TasksActions.updateTask({
             taskListId: this.props.params.id,
             taskId: taskId,
-            text: text
+            text: text,
+            desc: desc,
+            date: date
         });
     },
 
@@ -108,6 +110,8 @@ const TasksPage = React.createClass({
                                 onStatusChange={this.handleStatusChange.bind(null, task.id)}
                                 onUpdate={this.handleTaskUpdate.bind(null, task.id)}
                                 onDelete={this.handleDelete.bind(null, task.id)}
+                                desc={task.notes}
+                                date={task.dueTime}
                             />
                         )
                     }

@@ -12,7 +12,7 @@ import DeleteIcon from 'material-ui/lib/svg-icons/action/delete';
 import MoreVertIcon from 'material-ui/lib/svg-icons/navigation/more-vert';
 
 import './Task.less';
-
+import DatePicker from 'material-ui/lib/date-picker/date-picker';
 const ENTER_KEY = 13;
 const ESC_KEY = 27;
 
@@ -59,7 +59,7 @@ const Task = React.createClass({
     },
 
     saveTask() {
-        this.props.onUpdate({ text: this.input.value });
+        this.props.onUpdate({ text: this.input.value, desc: this.inputDesc.value, date: this.inputDate });
 
         this.setState({ isEditing: false });
     },
@@ -71,8 +71,12 @@ const Task = React.createClass({
     cancelTask() {
         this.setState({ isEditing: false });
     },
+    _handleChangeDate(event, date){
+        this.inputDate = date;
+    },
 
     render() {
+        debugger;
         return (
             this.state.isEditing
             ?
@@ -83,6 +87,18 @@ const Task = React.createClass({
                         defaultValue={this.props.text}
                         onKeyDown={this.handleKeyDown}
                         ref={c => this.input = c}
+                    />
+                    <input
+                        className='Task__input'
+                        type='text'
+                        defaultValue={this.props.desc}
+                        onKeyDown={this.handleKeyDown}
+                        ref={c => this.inputDesc = c}
+                    />
+                    <DatePicker
+                        hintText="Controlled Date Input"
+                        defaultValue={this.props.date}
+                        onChange={this._handleChangeDate}
                     />
                     <div className='Task__toolbar'>
                         <div>
@@ -101,7 +117,10 @@ const Task = React.createClass({
 
                     <div className='Task__text' onClick={this.handleEdit}>
                         <div className='Task__title'>{this.props.text}</div>
+                        <div className='Task__desc'>{this.props.desc || 'some desc'}</div>
+                        <div className='Task__date'>{this.props.date.toString() || '12.12.12'}</div>
                     </div>
+
 
                     <IconMenu iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}>
                         <MenuItem onClick={this.handleEdit}>Edit</MenuItem>

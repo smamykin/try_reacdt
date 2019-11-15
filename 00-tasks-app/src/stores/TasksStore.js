@@ -10,6 +10,7 @@ let _listName = '';
 let _error = null;
 
 function formatTask(data) {
+    debugger;
     return {
         id          : data.id,
         text        : data.title,
