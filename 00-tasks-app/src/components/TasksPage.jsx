@@ -10,10 +10,12 @@ import Task from './Task.jsx';
 import TaskCreateModal from './TaskCreateModal.jsx';
 
 import './TasksPage.less';
+import TaskListsActions from "../actions/TaskListsActions";
 
 function getStateFromFlux() {
     return {
-        tasks: TasksStore.getTasks()
+        tasks: TasksStore.getTasks(),
+        listName: TasksStore.getListName()
     };
 }
 
@@ -31,6 +33,7 @@ const TasksPage = React.createClass({
 
     componentDidMount() {
         TasksStore.addChangeListener(this._onChange);
+        TaskListsActions.loadTaskList(this.props.params.id);
     },
 
     componentWillReceiveProps(nextProps) {
@@ -86,7 +89,7 @@ const TasksPage = React.createClass({
         return (
             <div className='TasksPage'>
                 <div className='TasksPage__header'>
-                    <h2 className='TasksPage__title'>List name</h2>
+                    <h2 className='TasksPage__title'>{this.state.listName || 'List name'}</h2>
                     <div className='TasksPage__tools'>
                         <IconButton onClick={this.handleAddTask}>
                             <ContentAdd />

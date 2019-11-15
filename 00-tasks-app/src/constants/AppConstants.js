@@ -14,5 +14,7 @@ export default keyMirror({
     TASK_CREATE_SUCCESS          : null,
     TASK_CREATE_FAIL             : null,
     TASK_DELETE_SUCCESS          : null,
-    TASK_DELETE_FAIL             : null
+    TASK_DELETE_FAIL             : null,
+    TASK_LIST_GET_SUCCESS        : null,
+    TASK_LIST_GET_FAIL           : null
 });
