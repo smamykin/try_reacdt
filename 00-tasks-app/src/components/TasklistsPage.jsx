@@ -11,6 +11,32 @@ import HomeIcon from 'material-ui/lib/svg-icons/action/home';
 import ExitIcon from 'material-ui/lib/svg-icons/action/exit-to-app';
 import FolderIcon from 'material-ui/lib/svg-icons/file/folder';
 import AddIcon from 'material-ui/lib/svg-icons/content/add';
+import {SelectableContainerEnhance} from 'material-ui/lib/hoc/selectable-enhance';
+let SelectableList = SelectableContainerEnhance(List);
+
+function wrapState(ComposedComponent) {
+    const StateWrapper = React.createClass({
+        getInitialState() {
+            return {selectedIndex: 0};
+        },
+        handleUpdateSelectedIndex(e, index) {
+            this.setState({
+                selectedIndex: index,
+            });
+        },
+        render() {
+            return (
+                <ComposedComponent
+                    {...this.props}
+                    {...this.state}
+                />
+            );
+        },
+    });
+    return StateWrapper;
+}
+
+SelectableList = wrapState(SelectableList);
 
 import TaskListCreateModal from './TaskListCreateModal.jsx';
 
@@ -62,9 +88,9 @@ const TasklistsPage = React.createClass({
 
     render() {
         const { router } = this.context;
-        const isSelectedList = (list) => {
-            console.log(this.props.params.id === list.id);
-            return this.props.params.id === list.id
+        const getSelectedList = () => {
+            let currentList =  this.state.taskLists.find((list) => this.props.params.id === list.id);
+            return currentList && currentList.id;
         };
         const styles = {
             backgroundColor: 'rgba(255, 0, 0, 0.4)'
@@ -88,16 +114,17 @@ const TasklistsPage = React.createClass({
                             />
                         </List>
                         <Divider />
-                        <List className='TasklistsPage__list' subheader="Task Lists">
+                        <SelectableList
+                            valueLink={{value: getSelectedList(), requestChange: () => {}}}
+                            className='TasklistsPage__list' subheader="Task Lists" >
                             {
                                 this.state.taskLists.map(list =>
                                     <ListItem
                                         key={list.id}
+                                        value={list.id}
                                         leftIcon={<FolderIcon />}
                                         primaryText={list.name}
                                         onClick={router.push.bind(null, `/lists/${list.id}`)}
-                                        selected={isSelectedList(list)}
-                                        style={isSelectedList(list) ? styles : null}
                                     />
                                 )
                             }
@@ -106,7 +133,7 @@ const TasklistsPage = React.createClass({
                                 primaryText="Create new list"
                                 onClick={this.handleAddTaskList}
                             />
-                        </List>
+                        </SelectableList>
                         <Divider />
                         <List className='TasklistsPage__list'>
                             <ListItem
