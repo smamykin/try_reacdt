@@ -33,12 +33,12 @@ const TasksPage = React.createClass({
 
     componentDidMount() {
         TasksStore.addChangeListener(this._onChange);
-        TaskListsActions.loadTaskList(this.props.params.id);
     },
 
     componentWillReceiveProps(nextProps) {
         if (this.props.params.id !== nextProps.params.id) {
             TasksActions.loadTasks(nextProps.params.id);
+            TaskListsActions.loadTaskList(this.props.params.id);
         }
     },
 
